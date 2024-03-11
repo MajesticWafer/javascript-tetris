@@ -120,13 +120,57 @@
     //
     //-------------------------------------------------------------------------
 
-    var i = { size: 4, blocks: [0x0F00, 0x2222, 0x00F0, 0x4444], color: '#01e8e8'   };
-    var j = { size: 3, blocks: [0x44C0, 0x8E00, 0x6440, 0x0E20], color: '#0000ea'   };
-    var l = { size: 3, blocks: [0x4460, 0x0E80, 0xC440, 0x2E00], color: '#ea9b00' };
-    var o = { size: 2, blocks: [0xCC00, 0xCC00, 0xCC00, 0xCC00], color: '#e9e800' };
-    var s = { size: 3, blocks: [0x06C0, 0x8C40, 0x6C00, 0x4620], color: '#00e900'  };
-    var t = { size: 3, blocks: [0x0E40, 0x4C40, 0x4E00, 0x4640], color: '#9c00e9' };
-    var z = { size: 3, blocks: [0x0C60, 0x4C80, 0xC600, 0x2640], color: '#ea0001'    };
+    var blocks = {
+      i: { size: 4, blocks: [0x0F00, 0x2222, 0x00F0, 0x4444], color: '#01e8e8' },
+      j: { size: 3, blocks: [0x44C0, 0x8E00, 0x6440, 0x0E20], color: '#0000ea' },
+      l: { size: 3, blocks: [0x4460, 0x0E80, 0xC440, 0x2E00], color: '#ea9b00' },
+      o: { size: 2, blocks: [0xCC00, 0xCC00, 0xCC00, 0xCC00], color: '#e9e800' },
+      s: { size: 3, blocks: [0x06C0, 0x8C40, 0x6C00, 0x4620], color: '#00e900' },
+      t: { size: 3, blocks: [0x0E40, 0x4C40, 0x4E00, 0x4640], color: '#9c00e9' },
+      z: { size: 3, blocks: [0x0C60, 0x4C80, 0xC600, 0x2640], color: '#ea0001' }
+    };
+
+function addShading(blocks) {
+  // Define shading colors
+  var bottomShade = '#000000';
+  var topShade = '#FFFFFF';
+  
+  // Iterate through each block type
+  Object.keys(blocks).forEach(function(blockKey) {
+    var blockData = blocks[blockKey];
+    var blockColor = blockData.color;
+    var blockArray = blockData.blocks;
+    
+    console.log("Block " + blockKey + ":");
+    
+    // Iterate through each block shape
+    blockArray.forEach(function(block, index) {
+      // Add bottom shading
+      var bottomMask = 0xF;
+      for (var k = 0; k < 4; k++) {
+        if ((block & bottomMask) !== 0) {
+          block |= bottomMask << (16 + k * 4);
+        }
+        bottomMask <<= 4;
+      }
+      
+      // Add top shading
+      var topMask = 0xF000;
+      for (var l = 0; l < 4; l++) {
+        if ((block & topMask) !== 0) {
+          block |= topMask >>> (l * 4);
+        }
+        topMask >>= 4;
+      }
+      
+      // Render the block with shading
+      console.log(' - ' + block.toString(16) + ', Color: ' + blockColor);
+    });
+  });
+}
+
+addShading(blocks);
+
 
     //------------------------------------------------
     // do the bit manipulation and iterate through each
