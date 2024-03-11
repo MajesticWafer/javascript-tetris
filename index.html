@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  // Roboto font
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
@@ -40,9 +39,17 @@
     <canvas id="canvas">
       Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
     </canvas>
+    <button onclick="showStats('stats')">Show stats</button>
   </div>
 
-  // <script src="stats.js"></script>
+  <script>
+    function showStats(statsId) {
+      var stats = document.getElementById(statsId);
+      stats.style.display = "block";
+    }
+  </script>
+
+  <script id="stats" src="stats.js" style="display: block"></script>
   <script>
 
     //-------------------------------------------------------------------------
