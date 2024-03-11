@@ -1,11 +1,10 @@
-Javascript Tetris
+JavaScript Tetris
 =================
 
-An HTML5 Tetris Game
+An HTML5 Tetris Game, in the browser
 
- * [play the game](http://codeincomplete.com/projects/tetris/)
- * read a [blog article](http://codeincomplete.com/posts/2011/10/10/javascript_tetris/)
- * view the [source](https://github.com/jakesgordon/javascript-tetris)
+ * [Play JavaScript Tetris](http://majesticwafer.github.io/javascript-tetris)
+ * [GitHub Repository](https://github.com/MajesticWafer/javascript-tetris/)
 
 >> _*SUPPORTED BROWSERS*: Chrome, Firefox, Safari, Opera and IE9+_
 
